@@ -167,7 +167,7 @@ public class Lesson_1 {
             System.out.print("\n");
         }
     }
-    //Task14
+    //Task_14
     public static void twoArguments(int len, int initialValue) {
         int[] arr = new int[len];
         for (int i = 0; i < len; i++) {
