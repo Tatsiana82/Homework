@@ -19,16 +19,18 @@ public class MTSTest {
     public static WebDriver driver;
 
     @BeforeClass
-    public void setUp() {
+    public void siteOpen() {
 
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement button = wait.until(ExpectedConditions
                 .elementToBeClickable(By.xpath("//div[@class='cookie__buttons']/button[@id='cookie-agree']")));
         button.click();
     }
 
+    //Task1
     @Test(description = "Онлайн пополнение без комиссии")
     public void blockNameTest() {
         String expectedText = "Онлайн пополнение без комиссии";
@@ -36,18 +38,18 @@ public class MTSTest {
                 .getText().replaceAll("\\n", " ");
         assertEquals(expectedText, actualText, "Название блока неверное");
     }
-
-    @Test(description = "Наличие логотипов платежных систем")
-    public void logoTest() {
+    //Task2
+    @Test(description = "Наличие логотипов банковских карт")
+    public void logoPresentTest() {
         List<WebElement> images = driver.findElements(By.cssSelector("[class=\"pay__partners\"] img"));
 
         int expectedNumberOfLogo = 5;
         assertEquals(expectedNumberOfLogo, images.size(),
-                "Количество логотипов платёжных систем " + expectedNumberOfLogo);
+                "Количество логотипов " + expectedNumberOfLogo);
 
         for (WebElement image : images) {
             String url = image.getAttribute("src");
-            assertTrue(url != null && !url.isEmpty(),"URL не должен быть пустым");
+            assertTrue(url != null && !url.isEmpty(),"Не должен быть пустым");
             double height = image.getSize().height;
             double width = image.getSize().width;
             assertTrue(height > 0, "Height " + url + " is more 0");
@@ -55,7 +57,8 @@ public class MTSTest {
         }
     }
 
-    @Test(description = "Проверка ссылки 'Подробнее о сервисе'")
+    //Task3
+    @Test(description = "Подробнее о сервисе")
     public void linkTest() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Подробнее о сервисе")));
@@ -64,11 +67,12 @@ public class MTSTest {
 
         wait.until(ExpectedConditions.urlContains(expectedUrl));
         String actualUrl = driver.getCurrentUrl();
-        assertTrue(actualUrl.contains(expectedUrl), "Ссылка переводит на другую страницу");
+        assertTrue(actualUrl.contains(expectedUrl), "Линк работает");
         driver.navigate().back();
     }
 
-    @Test(description = "Тест кнопки 'Продолжить' ")
+    //Task4
+    @Test(description = "Продолжить")
     public void submitButtonTest() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement buttonSubmit = wait.until(ExpectedConditions
