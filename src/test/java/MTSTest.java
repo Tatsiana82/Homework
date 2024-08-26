@@ -77,7 +77,7 @@ public class MTSTest {
         WebElement inputPhone = driver.findElement(By.id("connection-phone"));
         inputPhone.sendKeys("297777777");
         WebElement inputSum = driver.findElement(By.xpath("//input[@id='connection-sum']"));
-        inputSum.sendKeys("25");
+        inputSum.sendKeys("27");
 
         buttonSubmit.click();
     }
