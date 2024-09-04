@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import io.qameta.allure.Epic;
+
 
 public class FormOfPaymentTest {
 
@@ -17,6 +19,8 @@ public class FormOfPaymentTest {
     private MainPage mainPage;
     private PaymentPage paymentPage;
 
+
+    @Epic("Форма оплаты")
     @BeforeEach
     public void initialize() {
         WebDriverManager.chromedriver().setup();
