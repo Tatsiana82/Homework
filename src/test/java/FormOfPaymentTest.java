@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ public class FormOfPaymentTest {
     private PaymentPage paymentPage;
 
 
-    @Epic("Форма оплаты")
+    @Epic("Сайт МТС")
     @BeforeEach
     public void initialize() {
         WebDriverManager.chromedriver().setup();
@@ -34,6 +35,7 @@ public class FormOfPaymentTest {
     }
 
     @Test
+    @Description("Проверка названия")
     public void testVerifySiteTitle() {
         mainPage.confirmCookies();
 
@@ -43,6 +45,7 @@ public class FormOfPaymentTest {
     }
 
     @Test
+    @Description("Проверка раздела")
     public void testCheckTitleUslugi() {
         mainPage.confirmCookies();
 
@@ -59,6 +62,7 @@ public class FormOfPaymentTest {
     }
 
     @Test
+    @Description("Проверка формы")
     public void testOperationForm() {
         mainPage.confirmCookies();
         mainPage.seeDropdown();
